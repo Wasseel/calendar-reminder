@@ -1,0 +1,6 @@
+# General rule first; more specific patterns below override it.
+* text=auto eol=lf
+
+# Windows batch files must keep CRLF or cmd.exe mis-parses them.
+*.cmd text eol=crlf
+/mvnw text eol=lf
