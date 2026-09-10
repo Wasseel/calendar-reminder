@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: reminder-api-prod
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Wasseel/calendar-reminder.git
+    targetRevision: main
+    path: deploy/chart
+    helm:
+      valueFiles:
+        - envs/prod.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: prod
+  # No automated block: qa, stage and prod are synced deliberately,
+  # from the ArgoCD UI or CLI, so a promotion is an act rather than a
+  # side effect of a commit.
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
