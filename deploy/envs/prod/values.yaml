@@ -1,0 +1,7 @@
+image:
+  tag: "local"
+ingress:
+  host: prod.reminder.local
+env:
+  SPRING_PROFILES_ACTIVE: prod
+replicaCount: 2

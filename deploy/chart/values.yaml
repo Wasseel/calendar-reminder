@@ -1,0 +1,24 @@
+# Defaults. Every environment overrides image.tag and ingress.host in
+# deploy/envs/<env>/values.yaml; Jenkins only ever rewrites image.tag there.
+replicaCount: 1
+
+image:
+  repository: reminder-api
+  tag: "local"
+  # IfNotPresent matters while images are sideloaded with `kind load`:
+  # Always would send Kubernetes to Docker Hub, where this does not exist.
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+
+ingress:
+  enabled: true
+  className: nginx
+  host: dev.reminder.local
+
+env:
+  SPRING_PROFILES_ACTIVE: dev
+
+resources:
+  requests: { cpu: 100m, memory: 384Mi }
+  limits:   { memory: 1Gi }

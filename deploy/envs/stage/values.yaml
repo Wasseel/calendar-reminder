@@ -1,0 +1,6 @@
+image:
+  tag: "local"
+ingress:
+  host: stage.reminder.local
+env:
+  SPRING_PROFILES_ACTIVE: stage

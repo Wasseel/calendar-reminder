@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "reminder-api.name" . }}
+  labels: {{- include "reminder-api.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: http
+      name: http
+  selector: {{- include "reminder-api.selectorLabels" . | nindent 4 }}
